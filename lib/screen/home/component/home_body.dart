@@ -1,5 +1,3 @@
-import 'dart:html';
-
 import 'package:flutter/material.dart';
 
 List<String> progressTitleList = [
@@ -208,6 +206,7 @@ class HomeBody extends StatelessWidget {
               top: 40,
             ),
             child: ListView.builder(
+              physics: const BouncingScrollPhysics(),
               itemCount: timeList.length,
               itemBuilder: (context, index) {
                 return Container(
@@ -219,8 +218,8 @@ class HomeBody extends StatelessWidget {
                       Text(
                         timeList[index],
                         style: const TextStyle(
-                          fontSize: 15,
-                          fontWeight: FontWeight.w500,
+                          fontSize: 12,
+                          fontWeight: FontWeight.w700,
                           color: Color(0xff373551),
                         ),
                       ),
@@ -228,10 +227,12 @@ class HomeBody extends StatelessWidget {
                         child: Container(
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(12),
-                            color: const Color(0xffe7e5f1),
+                            color: index.isOdd
+                                ? const Color(0xffe7e5f1)
+                                : const Color(0xfffee2e7),
                           ),
-                          margin: const EdgeInsets.only(left: 28),
-                          height: 120,
+                          margin: const EdgeInsets.only(left: 15),
+                          height: 115,
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
@@ -240,45 +241,110 @@ class HomeBody extends StatelessWidget {
                                     const EdgeInsets.only(top: 15, left: 15),
                                 child: Text(
                                   taskTitleList[index],
-                                  style: const TextStyle(
+                                  style: TextStyle(
                                     fontSize: 15,
                                     fontWeight: FontWeight.w700,
-                                    color: Color(0xff342f5d),
+                                    color: index.isOdd
+                                        ? const Color(0xff342f5d)
+                                        : const Color(0xff7e3b4a),
                                   ),
                                 ),
                               ),
                               Container(
-                                margin: const EdgeInsets.only(top: 8, left: 15),
+                                margin: const EdgeInsets.only(top: 5, left: 15),
                                 child: Text(
                                   taskDetailList[index],
+                                  style: TextStyle(
+                                      color: index.isOdd
+                                          ? const Color(0xff342f5d)
+                                          : const Color(0xff7e3b4a),
+                                      fontSize: 12),
                                 ),
                               ),
-                              Container(
-                                child: Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Text(
-                                      taskTimeList[index],
-                                    ),
-                                    Stack(
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Container(
+                                    margin: const EdgeInsets.only(
+                                        top: 15, left: 10),
+                                    child: Stack(
                                       children: [
                                         ClipRRect(
+                                          borderRadius:
+                                              BorderRadius.circular(100),
+                                          child: Image.asset(
+                                            index == 0
+                                                ? "assets/images/profile2.png"
+                                                : "assets/images/profile9.png",
+                                            height: 25,
+                                            width: 25,
+                                            fit: BoxFit.cover,
+                                          ),
+                                        ),
+                                        Container(
+                                          margin:
+                                              const EdgeInsets.only(left: 15),
+                                          child: ClipRRect(
+                                            borderRadius:
+                                                BorderRadius.circular(100),
                                             child: Image.asset(
-                                                "assets/images/profile2")),
-                                        ClipRRect(
+                                              "assets/images/profile3.png",
+                                              height: 25,
+                                              width: 25,
+                                              fit: BoxFit.cover,
+                                            ),
+                                          ),
+                                        ),
+                                        Container(
+                                          margin:
+                                              const EdgeInsets.only(left: 30),
+                                          child: ClipRRect(
+                                            borderRadius:
+                                                BorderRadius.circular(100),
                                             child: Image.asset(
-                                                "assets/images/profile2")),
-                                        ClipRRect(
+                                              index == 0
+                                                  ? "assets/images/profile4.png"
+                                                  : "assets/images/profile8.png",
+                                              height: 25,
+                                              width: 25,
+                                              fit: BoxFit.cover,
+                                            ),
+                                          ),
+                                        ),
+                                        Container(
+                                          margin:
+                                              const EdgeInsets.only(left: 45),
+                                          child: ClipRRect(
+                                            borderRadius:
+                                                BorderRadius.circular(100),
                                             child: Image.asset(
-                                                "assets/images/profile2")),
-                                        ClipRRect(
-                                            child: Image.asset(
-                                                "assets/images/profile2")),
+                                              index == 0
+                                                  ? "assets/images/profile5.png"
+                                                  : "assets/images/profile7.png",
+                                              height: 25,
+                                              width: 25,
+                                              fit: BoxFit.cover,
+                                            ),
+                                          ),
+                                        ),
                                       ],
-                                    )
-                                  ],
-                                ),
+                                    ),
+                                  ),
+                                  Container(
+                                    margin: const EdgeInsets.only(
+                                        right: 15, top: 15),
+                                    child: Text(
+                                      taskTimeList[index],
+                                      style: TextStyle(
+                                        fontSize: 10,
+                                        color: index.isOdd
+                                            ? const Color(0xff342f5d)
+                                            : const Color(0xff7e3b4a),
+                                      ),
+                                    ),
+                                  ),
+                                ],
                               )
                             ],
                           ),
