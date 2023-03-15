@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+import 'bottom_sheet.dart';
+
 List<String> progressTitleList = [
   "Woring Hours",
   "Your Effciency",
@@ -98,7 +100,14 @@ class HomeBody extends StatelessWidget {
                 physics: const BouncingScrollPhysics(),
                 itemBuilder: (context, index) {
                   return GestureDetector(
-                    onTap: () {},
+                    onTap: () {
+                      showDialog(
+                          context: context,
+                          builder: (BuildContext context) {
+                            return const CustomDialog();
+                          });
+                      
+                    },
                     child: Container(
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(15),
@@ -414,6 +423,16 @@ class HomeBody extends StatelessWidget {
             ],
           ),
         ),
+        //  Container(
+        //   decoration: BoxDecoration(
+        //     borderRadius: BorderRadius.circular(20),
+        //     color: Colors.white,
+        //   ),
+        //   margin: const EdgeInsets.only(right: 20, left: 20, bottom: 25),
+        //   alignment: Alignment.bottomCenter,
+        //   height: size.height * .7,
+        //   width: size.width,
+        // )
       ],
     );
   }
