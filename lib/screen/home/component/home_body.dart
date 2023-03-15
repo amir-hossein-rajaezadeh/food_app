@@ -1,5 +1,3 @@
-import 'dart:ui';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -99,80 +97,84 @@ class HomeBody extends StatelessWidget {
                 itemCount: valueList.length,
                 physics: const BouncingScrollPhysics(),
                 itemBuilder: (context, index) {
-                  return Container(
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(15),
-                      color: index == 0
-                          ? const Color(0xfff56c61)
-                          : const Color(0xffffd465),
-                    ),
-                    margin: EdgeInsets.only(left: index == 0 ? 28 : 15),
-                    width: 130,
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Container(
-                          margin: const EdgeInsets.only(top: 20, left: 15),
-                          child: Stack(
-                            alignment: Alignment.center,
+                  return GestureDetector(
+                    onTap: () {},
+                    child: Container(
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(15),
+                        color: index == 0
+                            ? const Color(0xfff56c61)
+                            : const Color(0xffffd465),
+                      ),
+                      margin: EdgeInsets.only(left: index == 0 ? 28 : 15),
+                      width: 130,
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Container(
+                            margin: const EdgeInsets.only(top: 20, left: 15),
+                            child: Stack(
+                              alignment: Alignment.center,
+                              children: [
+                                SizedBox(
+                                  height: 55,
+                                  width: 55,
+                                  child: CircularProgressIndicator(
+                                    color: index == 0
+                                        ? const Color(0xffffbdb8)
+                                        : const Color(0xffa87f28),
+                                    value: valueList[index],
+                                    strokeWidth: 6,
+                                  ),
+                                ),
+                                Text(
+                                  valueTextList[index],
+                                  style: TextStyle(
+                                      fontSize: index == 0 ? 12 : 18,
+                                      color: index == 0
+                                          ? Colors.white
+                                          : const Color(0xff7a5106),
+                                      fontWeight: index == 0
+                                          ? FontWeight.w400
+                                          : FontWeight.w600),
+                                )
+                              ],
+                            ),
+                          ),
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              SizedBox(
-                                height: 55,
-                                width: 55,
-                                child: CircularProgressIndicator(
-                                  color: index == 0
-                                      ? const Color(0xffffbdb8)
-                                      : const Color(0xffa87f28),
-                                  value: valueList[index],
-                                  strokeWidth: 6,
+                              Container(
+                                margin:
+                                    const EdgeInsets.only(left: 13, right: 5),
+                                child: Text(
+                                  progressTitleList[index],
+                                  style: TextStyle(
+                                      fontSize: 16,
+                                      color: index == 0
+                                          ? Colors.white
+                                          : const Color(0xff7a5000),
+                                      fontWeight: FontWeight.w500),
                                 ),
                               ),
-                              Text(
-                                valueTextList[index],
-                                style: TextStyle(
-                                    fontSize: index == 0 ? 12 : 18,
-                                    color: index == 0
-                                        ? Colors.white
-                                        : const Color(0xff7a5106),
-                                    fontWeight: index == 0
-                                        ? FontWeight.w400
-                                        : FontWeight.w600),
+                              Container(
+                                margin: const EdgeInsets.only(
+                                    top: 10, left: 13, right: 5, bottom: 10),
+                                child: Text(
+                                  progressDetailList[index],
+                                  style: TextStyle(
+                                      fontSize: 12,
+                                      color: index == 0
+                                          ? Colors.white
+                                          : const Color(0xff7a5000),
+                                      fontWeight: FontWeight.w500),
+                                ),
                               )
                             ],
-                          ),
-                        ),
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Container(
-                              margin: const EdgeInsets.only(left: 13, right: 5),
-                              child: Text(
-                                progressTitleList[index],
-                                style: TextStyle(
-                                    fontSize: 16,
-                                    color: index == 0
-                                        ? Colors.white
-                                        : const Color(0xff7a5000),
-                                    fontWeight: FontWeight.w500),
-                              ),
-                            ),
-                            Container(
-                              margin: const EdgeInsets.only(
-                                  top: 10, left: 13, right: 5, bottom: 10),
-                              child: Text(
-                                progressDetailList[index],
-                                style: TextStyle(
-                                    fontSize: 12,
-                                    color: index == 0
-                                        ? Colors.white
-                                        : const Color(0xff7a5000),
-                                    fontWeight: FontWeight.w500),
-                              ),
-                            )
-                          ],
-                        )
-                      ],
+                          )
+                        ],
+                      ),
                     ),
                   );
                 },
@@ -209,7 +211,7 @@ class HomeBody extends StatelessWidget {
             ),
             Expanded(
               child: Container(
-                margin: const EdgeInsets.only(top: 40, bottom: 0),
+                margin: const EdgeInsets.only(top: 30, bottom: 30),
                 child: ListView.builder(
                   physics: const BouncingScrollPhysics(),
                   itemCount: timeList.length,
@@ -367,61 +369,51 @@ class HomeBody extends StatelessWidget {
           ],
         ),
         Container(
-          margin: const EdgeInsets.only(right: 20, left: 20, bottom: 0),
-          decoration: const BoxDecoration(
-            color: Colors.transparent,
+          margin: const EdgeInsets.only(right: 10, left: 15, bottom: 5),
+          decoration: BoxDecoration(
+            color: const Color(0xff2d2b4e),
+            borderRadius: BorderRadius.circular(20),
           ),
           width: size.width,
           height: 70,
-          child: ClipRRect(
-            borderRadius: BorderRadius.circular(15),
-            child: BackdropFilter(
-              filter: ImageFilter.blur(
-                sigmaX: 5.0,
-                sigmaY: 5.0,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Container(
+                margin: const EdgeInsets.only(left: 10),
+                child: IconButton(
+                  onPressed: () {},
+                  icon: const Icon(
+                    CupertinoIcons.square_list_fill,
+                    color: Colors.white,
+                  ),
+                ),
               ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Container(
-                    margin: const EdgeInsets.only(left: 10),
-                    child: IconButton(
-                      onPressed: () {},
-                      icon: const Icon(
-                        CupertinoIcons.square_list_fill,
-                        color: Color(0xff2d2b4e),
-                      ),
-                    ),
-                  ),
-                  IconButton(
-                    onPressed: () {},
-                    icon: const Icon(
-                      Icons.lightbulb_outline_sharp,
-                    ),
-                  ),
-                  IconButton(
-                    onPressed: () {},
-                    icon: const Icon(CupertinoIcons.calendar),
-                  ),
-                  IconButton(
-                    onPressed: () {},
-                    icon: const Icon(CupertinoIcons.chat_bubble_2),
-                  ),
-                  Container(
-                    margin: const EdgeInsets.only(right: 10),
-                    child: IconButton(
-                      onPressed: () {},
-                      icon: const Icon(
-                        Icons.settings,
-                        color: Color.fromARGB(255, 0, 0, 0),
-                      ),
-                    ),
-                  ),
-                ],
+              IconButton(
+                onPressed: () {},
+                icon: const Icon(Icons.lightbulb_outline_sharp,
+                    color: Color(0xff9695a8)),
               ),
-            ),
+              IconButton(
+                onPressed: () {},
+                icon: const Icon(CupertinoIcons.calendar,
+                    color: Color(0xff9695a8)),
+              ),
+              IconButton(
+                onPressed: () {},
+                icon: const Icon(CupertinoIcons.chat_bubble_2,
+                    color: Color(0xff9695a8)),
+              ),
+              Container(
+                margin: const EdgeInsets.only(right: 10),
+                child: IconButton(
+                  onPressed: () {},
+                  icon: const Icon(Icons.settings, color: Color(0xff9695a8)),
+                ),
+              ),
+            ],
           ),
-        )
+        ),
       ],
     );
   }
